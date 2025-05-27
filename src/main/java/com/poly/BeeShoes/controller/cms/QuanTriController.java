@@ -1,7 +1,6 @@
 package com.poly.BeeShoes.controller.cms;
 
 import com.poly.BeeShoes.model.QuanTri;
-import com.poly.BeeShoes.model.User;
 import com.poly.BeeShoes.service.QuanTriService;
 //import com.poly.BeeShoes.service.SanPhamService;
 import lombok.RequiredArgsConstructor;
@@ -9,10 +8,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Controller
@@ -40,8 +37,8 @@ public class QuanTriController {
             strip.setTitle_sp2("Giày Xuân 2030");
             strip.setTitle_sp3("Phụ kiện");
             strip.setTitle_sp_sale("Giày thể thao đơn giản");
-            strip.setBanner1("/assets/customer/img/hero/banner1.png");
-            strip.setBanner2("/assets/customer/img/hero/banner2.png");
+            strip.setBanner1("/static/assets/customer/img/hero/banner1.png");
+            strip.setBanner2("/static/assets/customer/img/hero/banner2.png");
             strip.setSan_pham1(null);
             strip.setSan_pham2(null);
             strip.setSan_pham3(null);
