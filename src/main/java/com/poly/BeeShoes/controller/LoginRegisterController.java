@@ -118,7 +118,7 @@ public class LoginRegisterController {
             String password = LibService.generateRandomString(10);
             user.setPassword(passwordEncoder.encode(password));
             userService.update(user);
-            String tb = "Bạn đã tiến hàng yêu cầu mật khẩu mới !";
+            String tb = "Bạn đã tiến hành yêu cầu mật khẩu mới !";
             String body = "<h1>mật khẩu mới !</h1><h2>email đăng nhập là : " + user.getEmail() + "</h2><h2>Mật Khẩu là : " + password + "</h2>";
             mailUtility.sendMail(user.getEmail(), tb, body);
         }
