@@ -236,7 +236,7 @@
                         th:text="${#dates.format(tt.getNgayTao(), 'dd-MM-yyyy HH:mm:ss')}">
                     </td>
                     <td class="table-column-pl-0">
-                        <a th:if="${tt.getNguoiTao()!=null and tt.getNguoiTao().getRole().name()!='CUSTOMER'}" th:href="@{/cms/nhan-vien/view-detail/{id}(id=${tt.nguoiTao.nhanVien.id})}" th:text="${tt.getNguoiTao().getNhanVien().getHoTen()+'|'+tt.getNguoiTao().getNhanVien().getMaNhanVien()}">
+                        <a th:if="${tt.getNguoiTao()!=null and tt.getNguoiTao().getRole().name()!='CUSTOMER'}" th:href="@{/cms/nhan-vien/view-detail/{id}(id=${tt.getNguoiTao().getNhanVien().getId()})}" th:text="${tt.getNguoiTao().getNhanVien().getHoTen()+'|'+tt.getNguoiTao().getNhanVien().getMaNhanVien()}">
                         </a>
                         <a  th:if="${tt.getNguoiTao()!=null and tt.getNguoiTao().getRole().name()=='CUSTOMER'}" th:href="@{/cms/khach-hang/detail/{id}(id=${tt.getNguoiTao().getKhachHang().getId()})}" th:text="${tt.getNguoiTao().getKhachHang().getHoTen()+'|'+tt.getNguoiTao().getKhachHang().getMaKhachHang()}">
 
