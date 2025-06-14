@@ -38,7 +38,7 @@ public class NhanVienController {
     @GetMapping("")
     public String nhanVien(Model model) {
         List<NhanVien> nv = nhanVienService.getAll();
-//        model.addAttribute("listCV", chucVuService.getAll());
+        model.addAttribute("listCV", chucVuService.getAll());
         model.addAttribute("listNV", nv);
         return "cms/pages/users/nhanVien";
     }
@@ -99,7 +99,7 @@ public class NhanVienController {
             check = true;
         }
         if (check) {
-//            nhanVien.setAvatar(null);
+            nhanVien.setAvatar(null);
             model.addAttribute("nhanVien", nhanVien);
             model.addAttribute("listCV", chucVuService.getAll());
             return "cms/pages/users/add-nhanVien";
