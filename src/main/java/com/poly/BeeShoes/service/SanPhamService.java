@@ -1,6 +1,5 @@
 package com.poly.BeeShoes.service;
 
-import com.poly.BeeShoes.model.MuiGiay;
 import com.poly.BeeShoes.model.SanPham;
 import com.poly.BeeShoes.model.TheLoai;
 import com.poly.BeeShoes.model.ThuongHieu;
@@ -8,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
-import java.util.Map;
 
 public interface SanPhamService {
     List<String> getListKichCo(Long id);
@@ -34,3 +32,4 @@ public interface SanPhamService {
 
     List<SanPham> findByTrangThaiEquals(Boolean trangThai);
 }
+
