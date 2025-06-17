@@ -1,15 +1,4 @@
-/*
-=========================================================
-* Tẩn Láo Lù
-=========================================================
 
-* Code version: 1.0
-* Copyright 2024 anhtuanlc (https://anhtuanlc.online)
-* Licensed under MIT (https://anhtuanlc.online)
-* Coded by anhtuanlc
-
-=========================================================
- */
 #dataInTable tr td:nth-child(2) {
     padding-left: 0 !important;
 }
