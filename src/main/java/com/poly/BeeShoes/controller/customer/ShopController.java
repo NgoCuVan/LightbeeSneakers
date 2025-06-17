@@ -1,7 +1,7 @@
 package com.poly.BeeShoes.controller.customer;
 
 import com.poly.BeeShoes.model.SanPham;
-import com.poly.BeeShoes.service.ChiTietSanPhamService;
+import com.poly.BeeShoes.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

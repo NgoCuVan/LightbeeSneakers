@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import java.util.List;
 
 @Controller
-@RequestMapping("/cms")
+@RequestMapping("/cms/cashier")
 @RequiredArgsConstructor
 public class CashierController {
     private final KhachHangService khachHangService;
