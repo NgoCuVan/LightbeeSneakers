@@ -2,7 +2,7 @@ package com.poly.BeeShoes.controller.cms;
 
 import com.poly.BeeShoes.model.QuanTri;
 import com.poly.BeeShoes.service.QuanTriService;
-//import com.poly.BeeShoes.service.SanPhamService;
+import com.poly.BeeShoes.service.SanPhamService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,7 +17,7 @@ import java.util.List;
 @RequestMapping("/cms/quan-tri")
 public class QuanTriController {
     private final QuanTriService quanTriService;
-//    private final SanPhamService sanPhamService;
+    private final SanPhamService sanPhamService;
 
     @GetMapping("")
     public String quanTri(Model model) {
@@ -51,8 +51,8 @@ public class QuanTriController {
         QuanTri quantri = quanTriService.getById(1L);
         quantri.setThoi_gian(Timestamp.valueOf(quantri.getThoi_gian_sale()));
         model.addAttribute("quanTri", quantri);
-//        model.addAttribute("listSP", sanPhamService.findByTrangThaiEquals(true));
-//        model.addAttribute("listSPSales", sanPhamService.getAllDiscount());
+        model.addAttribute("listSP", sanPhamService.findByTrangThaiEquals(true));
+        model.addAttribute("listSPSales", sanPhamService.getAllDiscount());
         return "cms/pages/quantri/quan-tri";
     }
 
