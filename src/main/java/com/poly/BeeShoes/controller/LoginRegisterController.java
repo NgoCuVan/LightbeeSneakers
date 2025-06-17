@@ -7,8 +7,8 @@ import com.poly.BeeShoes.library.LibService;
 import com.poly.BeeShoes.model.KhachHang;
 import com.poly.BeeShoes.model.Role;
 import com.poly.BeeShoes.model.User;
-//import com.poly.BeeShoes.service.HangKhachHangService;
-//import com.poly.BeeShoes.service.KhachHangService;
+import com.poly.BeeShoes.service.HangKhachHangService;
+import com.poly.BeeShoes.service.KhachHangService;
 import com.poly.BeeShoes.service.UserService;
 import com.poly.BeeShoes.utility.ConvertUtility;
 import com.poly.BeeShoes.utility.MailUtility;
@@ -46,8 +46,8 @@ public class LoginRegisterController {
     private final AuthenticationManager authenticationManager;
     private final PasswordEncoder passwordEncoder;
     private final UserService userService;
-//    private final KhachHangService khachHangService;
-//    private final HangKhachHangService hangKhachHangService; // page đăng ký nmmowr cho em
+    private final KhachHangService khachHangService;
+    private final HangKhachHangService hangKhachHangService; // page đăng ký nmmowr cho em
     private final MailUtility mailUtility;
 
     @GetMapping("/login")
@@ -181,11 +181,11 @@ public class LoginRegisterController {
                     khachHang.setNgayTao(ConvertUtility.DateToTimestamp(new Date()));
                     khachHang.setGioiTinh(registerDto.isGioiTinh());
                     khachHang.setSdt(registerDto.getSdt());
-//                    khachHang.setMaKhachHang(khachHangService.generateCustomerCode());
+                    khachHang.setMaKhachHang(khachHangService.generateCustomerCode());
                     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     Date date = sdf.parse(registerDto.getNgaySinh());
                     khachHang.setNgaySinh(new java.sql.Date(date.getTime()));
-//                    KhachHang createdKhachHang = khachHangService.add(khachHang);
+                    KhachHang createdKhachHang = khachHangService.add(khachHang);
 
                     User user = new User();
                     user.setEmail(registerDto.getEmail());
@@ -196,9 +196,9 @@ public class LoginRegisterController {
                     user.setNgayTao(ConvertUtility.DateToTimestamp(new Date()));
                     User createdUser = userService.createNewUser(user);
 
-//                    if (createdKhachHang == null || createdUser == null) {
-//                        throw new RuntimeException("Lỗi khi tạo mới khách hàng , vui lòng thử lại!");
-//                    } else {
+                    if (createdKhachHang == null || createdUser == null) {
+                        throw new RuntimeException("Lỗi khi tạo mới khách hàng , vui lòng thử lại!");
+                    } else {
                         Authentication authentication = authenticationManager.authenticate(
                                 new UsernamePasswordAuthenticationToken(registerDto.getEmail(), registerDto.getPassword())
                         );
@@ -209,7 +209,7 @@ public class LoginRegisterController {
                         User userTest = (User) authentication.getPrincipal();
                         System.out.println("hi " + userTest.getKhachHang().getHoTen());
                         return "redirect:/light-bee/";
-//                    }
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                     TransactionAspectSupport.currentTransactionStatus().setRollbackOnly();
