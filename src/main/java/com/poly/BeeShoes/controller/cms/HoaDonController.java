@@ -1,14 +1,12 @@
 package com.poly.BeeShoes.controller.cms;
 
 import com.poly.BeeShoes.constant.TrangThaiHoaDon;
-import com.poly.BeeShoes.model.HinhThucThanhToan;
-import com.poly.BeeShoes.model.HoaDon;
-import com.poly.BeeShoes.model.HoaDonChiTiet;
-import com.poly.BeeShoes.model.LichSuHoaDon;
+import com.poly.BeeShoes.model.*;
 import com.poly.BeeShoes.service.HinhThucThanhToanService;
 import com.poly.BeeShoes.service.HoaDonChiTietService;
 import com.poly.BeeShoes.service.HoaDonService;
 import com.poly.BeeShoes.service.LichSuHoaDonService;
+import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,8 +24,8 @@ import java.util.List;
 @RequestMapping("/cms")
 @RequiredArgsConstructor
 public class HoaDonController {
-
     private final HoaDonService hoaDonService;
+
     private final HoaDonChiTietService hoaDonChiTietService;
     private final LichSuHoaDonService lichSuHoaDonService;
     private final HinhThucThanhToanService hinhThucThanhToanService;
@@ -85,6 +84,27 @@ public class HoaDonController {
     @GetMapping("/check-out")
     public String checkout() {
         return "cms/pages/orders/checkout";
+    }
+
+    @GetMapping("/orders-purchased")
+    public String ordersPurchasedPage(Model model, HttpSession session) {
+        // Lấy user từ session
+        User user = (User) session.getAttribute("user");
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        // Chỉ lấy các đơn có người tạo là tài khoản hiện tại và trạng thái là THÀNH CÔNG
+        List<HoaDon> hoaDonThanhCongList = hoaDonService.getHoaDonByKhachHangAndTrangThai(user.getKhachHang().getId(), TrangThaiHoaDon.ThanhCong);
+
+        model.addAttribute("hoaDonThanhCongList", hoaDonThanhCongList);
+        model.addAttribute("count", hoaDonThanhCongList.size());
+        System.out.println("customerId = " + user.getKhachHang().getId());
+        System.out.println(">>> Số hóa đơn: " + hoaDonThanhCongList.size());
+        for (HoaDon hd : hoaDonThanhCongList) {
+            System.out.println(">>> Mã HĐ: " + hd.getMaHoaDon());
+        }
+        return "cms/pages/orders/orders-purchased";
     }
 
 }

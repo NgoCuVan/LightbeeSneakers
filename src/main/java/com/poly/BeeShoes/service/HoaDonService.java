@@ -31,7 +31,7 @@ public interface HoaDonService {
     List<HoaDon> getByKhachHang(KhachHang khachHang);
 
     List<HoaDon> getAllHoaDonByTrangThai(String trangThaiHoaDon);
-
+    List<HoaDon> getHoaDonByKhachHangAndTrangThai(Long customerId, String trangThai);
     HoaDon getHoaDonById(Long id);
 
     Long count();
