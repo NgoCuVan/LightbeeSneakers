@@ -146,6 +146,7 @@ public class LoginRegisterController {
             session = request.getSession(true);
             session.setAttribute(HttpSessionSecurityContextRepository.SPRING_SECURITY_CONTEXT_KEY, securityContext);
             User user = userService.getByUsername(authentication.getName());
+            session.setAttribute("user", user); // ✅ dòng bạn thiếu
             if (user.getRole() != Role.CUSTOMER) {
                 return "redirect:/cms";
             }

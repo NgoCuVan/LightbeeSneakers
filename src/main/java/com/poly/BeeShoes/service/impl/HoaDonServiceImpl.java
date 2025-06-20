@@ -93,6 +93,11 @@ public class HoaDonServiceImpl implements HoaDonService {
         return hoaDonRepository.findByTrangThai(trangThaiHoaDon, Sort.by(Sort.Direction.DESC, "ngayTao"));
     }
 
+    @Override
+    public List<HoaDon> getHoaDonByKhachHangAndTrangThai(Long customerId, String trangThai) {
+        return hoaDonRepository.findByKhachHang_IdAndTrangThai(customerId, trangThai);
+    }
+
 
     @Override
     public HoaDon getHoaDonById(Long id) {
